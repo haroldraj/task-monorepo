@@ -1,0 +1,6 @@
+type: object
+required: [id, title, done]
+properties:
+  id: { type: integer, format: int64, readOnly: true }
+  title: { type: string, minLength: 1, maxLength: 120 }
+  done: { type: boolean }

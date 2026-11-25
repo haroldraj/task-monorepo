@@ -1,0 +1,27 @@
+{
+  "name": "task-monorepo",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start:api": "cd apps/task-api && mvnw spring-boot:run",
+    "start:web": "cd apps/task-web && npm start",
+    "dev": "concurrently -n API,WEB -c blue,green \"npm run start:api\" \"npm run start:web\"",
+    "lint:api": "spectral lint libs/api-contract/openapi.yaml",
+    "generate:api": "openapi-typescript libs/api-contract/openapi.yaml -o libs/api-client/schema.d.ts",
+    "generate:java": "cd apps/task-api && mvnw -q generate-sources",
+    "generate": "npm run generate:java && npm run generate:api"
+  },
+  "devDependencies": {
+    "@stoplight/spectral-cli": "^6.17.1",
+    "concurrently": "^10.0.7",
+    "openapi-typescript": "^7.13.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.17.0"
+  }
+}

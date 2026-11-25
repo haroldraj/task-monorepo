@@ -1,0 +1,5 @@
+description: Erreur (format RFC 7807)
+content:
+  application/problem+json:
+    schema:
+      $ref: '../schemas/Problem.yaml'

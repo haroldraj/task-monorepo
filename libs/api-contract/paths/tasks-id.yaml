@@ -1,0 +1,46 @@
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema: { type: integer, format: int64 }
+get:
+  operationId: getTask
+  tags: [Tasks]
+  summary: Récupérer une tâche
+  responses:
+    '200':
+      description: La tâche
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Task.yaml'
+    default:
+      $ref: '../components/responses/Error.yaml'
+put:
+  operationId: updateTask
+  tags: [Tasks]
+  summary: Modifier une tâche
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/TaskInput.yaml'
+  responses:
+    '200':
+      description: Tâche modifiée
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Task.yaml'
+    default:
+      $ref: '../components/responses/Error.yaml'
+delete:
+  operationId: deleteTask
+  tags: [Tasks]
+  summary: Supprimer une tâche
+  responses:
+    '204':
+      description: Supprimée
+    default:
+      $ref: '../components/responses/Error.yaml'

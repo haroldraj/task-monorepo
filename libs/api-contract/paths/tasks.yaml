@@ -1,0 +1,39 @@
+get:
+  operationId: listTasks
+  tags: [Tasks]
+  summary: Lister les tâches
+  parameters:
+    - name: page
+      in: query
+      schema: { type: integer, minimum: 0, default: 0 }
+    - name: size
+      in: query
+      schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+  responses:
+    '200':
+      description: Page de tâches
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/TaskPage.yaml'
+    default:
+      $ref: '../components/responses/Error.yaml'
+post:
+  operationId: createTask
+  tags: [Tasks]
+  summary: Créer une tâche
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/TaskInput.yaml'
+  responses:
+    '201':
+      description: Tâche créée
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Task.yaml'
+    default:
+      $ref: '../components/responses/Error.yaml'
